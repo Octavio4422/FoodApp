@@ -1,9 +1,10 @@
 require("dotenv").config();
 const axios = require("axios");
 const { Recipe, Diet } = require("../db.js");
-const { Op } = require("sequelize");
 const { apiParser } = require("../utils/functions/apiParser.js");
+const { dietCreator } = require("../utils/functions/dietCreator.js");
 const { queryCheck } = require("../utils/functions/queryCheck.js");
+const { getDiets } = require("./dietsController.js");
 const { API_KEY } = process.env;
 
 async function getRecipes(req, res, next) {
@@ -53,13 +54,12 @@ async function getRecipeId(req, res, next) {
   id = id.trim().toLowerCase();
   let initialRequest;
   let apiResponse;
-  let dbresponse;
+  let dbResponse;
 
   try {
     if (id.includes("-")) {
-      dbresponse = Recipe.findByPk(id, { include: Diet });
-      if (!dbresponse.length) return res.status(400).send("not found");
-
+      dbResponse = await Recipe.findByPk(id, { include: Diet });
+      if (!dbResponse) return res.status(400).send("not found");
       return res.status(302).json(dbResponse);
     } else {
       initialRequest = await axios.get(
@@ -79,8 +79,7 @@ async function postRecipe(req, res, next) {
   const { name, image, summary, score, steps, diets } = req.body;
 
   try {
-    await Recipe.findAll();
-    await Diet.findAll();
+    await dietCreator();
 
     const [recipe, created] = await Recipe.findOrCreate({
       where: { name: name },
@@ -104,12 +103,12 @@ async function postRecipe(req, res, next) {
       include: Diet,
     });
 
-    return {
+    return res.status(200).json({
       message: `The Recipe ${response.name} was created succesfully`,
-      Recipe: response,
-    };
+      recipe: response,
+    });
   } catch (e) {
-    return next(e);
+    next(e);
   }
 }
 
