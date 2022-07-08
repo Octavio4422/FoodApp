@@ -5,6 +5,7 @@ import {
   ALL_RECIPES,
   CLEAR_ERROR,
   CREATE_RECIPES,
+  EMPTY_INPUT,
   FITLER,
   ID_ERROR,
   ID_RECIPES,
@@ -85,6 +86,12 @@ export default function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         recipes: [...newFilter],
+      };
+
+    case EMPTY_INPUT:
+      return {
+        ...state,
+        recipes: [...state.originalRecipes],
       };
 
     case ID_ERROR:

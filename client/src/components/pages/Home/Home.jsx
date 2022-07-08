@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allRecipes } from "../../../redux/actions";
+
 import Filter from "../../modules/Filters&Orders/Filter/Filter";
 import Order from "../../modules/Filters&Orders/Order/Order";
+import SearchBar from "../../modules/Filters&Orders/SearchBar/SearchBar";
 import Pagination from "../../modules/Pagination/Pagination";
 import Recipes from "../../modules/Recipes/Recipes";
+import Header from "../../Sections/Header";
+import Footer from "../../Sections/Footer";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -36,8 +40,12 @@ export default function Home() {
 
   return (
     <div>
-      <Order/>
+      <div>
+        <Header />
+      </div>
+      <Order />
       <Filter resetPage={resetPage} />
+      <SearchBar resetPage={resetPage} />
       <Pagination
         currentPage={currentPage}
         cardsPerPage={cardsPerPage}
@@ -45,6 +53,9 @@ export default function Home() {
         paginate={paginate}
       />
       <Recipes recipes={currentCard} />
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }

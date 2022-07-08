@@ -11,6 +11,7 @@ export const ALL_DIETS = "ALL_DIETS";
 //Filter Order SearchBar actions
 export const ORDER = "ORDER";
 export const FITLER = "FILTER";
+export const EMPTY_INPUT = "EMPTY_INPUT";
 
 //error actions
 export const ID_ERROR = "ID_ERROR"
@@ -100,6 +101,12 @@ export const filterRecipes = (value) => {
   return {
     type: FITLER,
     payload: value,
+  };
+};
+
+export const emptyInput = () => {
+  return {
+    type: EMPTY_INPUT,
   };
 };
 
