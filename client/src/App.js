@@ -16,7 +16,7 @@ function App() {
           <Route exact path={"/recipes"} element={<Home />} />
           <Route exact path={"/recipe/:id"} element={<DetailRecipe />} />
           <Route exact path={"/recipe/create"} element={<CreateRecipe />} />
-          <Route exact path={"/*"} element={<Error />} />
+          <Route exact path={"*"} element={<Error />} />
         </Routes>
       </BrowserRouter>
     </div>
