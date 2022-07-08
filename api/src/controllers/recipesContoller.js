@@ -43,7 +43,7 @@ async function getRecipes(req, res, next) {
 
       if (!response.length) return res.status(400).send("not found");
 
-      return res.status(302).json(response);
+      return res.status(200).json(response);
     }
   } catch (e) {
     return next(e);
@@ -61,7 +61,7 @@ async function getRecipeId(req, res, next) {
     if (id.includes("-")) {
       dbResponse = await Recipe.findByPk(id, { include: Diet });
       if (!dbResponse) return res.status(400).send("not found");
-      return res.status(302).json(dbParser(dbResponse));
+      return res.status(200).json(dbParser(dbResponse));
     } else {
       initialRequest = await axios.get(
         `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
@@ -69,7 +69,7 @@ async function getRecipeId(req, res, next) {
       apiResponse = apiParser(initialRequest.data);
 
       if (!apiResponse) return res.status(400).send("not found");
-      return res.status(302).json(apiResponse);
+      return res.status(200).json(apiResponse);
     }
   } catch (e) {
     return next(e);
@@ -104,10 +104,7 @@ async function postRecipe(req, res, next) {
       include: Diet,
     });
 
-    return res.status(200).json({
-      message: `The Recipe ${response.name} was created succesfully`,
-      recipe: dbParser(response),
-    });
+    return res.status(201).json(dbParser(response));
   } catch (e) {
     next(e);
   }
