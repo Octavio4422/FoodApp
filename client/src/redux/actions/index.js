@@ -5,7 +5,7 @@ import { LOCAL_API_RECIPES, LOCAL_API_DIETS } from "../../utils/globals";
 export const ALL_RECIPES = "ALL_RECIPES";
 export const ID_RECIPES = "ID_RECIPES";
 export const QUERY_RECIPES = "QUERY_RECIPES";
-export const CREATE_RECIPES = "CREATE_RECIPES"
+export const CREATE_RECIPES = "CREATE_RECIPES";
 export const ALL_DIETS = "ALL_DIETS";
 
 //Filter Order SearchBar actions
@@ -14,7 +14,9 @@ export const FITLER = "FILTER";
 export const EMPTY_INPUT = "EMPTY_INPUT";
 
 //error actions
-export const ID_ERROR = "ID_ERROR"
+export const ALL_ERROR = "ALL_ERROR";
+export const QUERY_ERROR = "QUERY_ERROR";
+export const ID_ERROR = "ID_ERROR";
 export const CLEAR_ERROR = "CLEAR_ERROR";
 
 export const allRecipes = () => (dispatch) => {
@@ -27,7 +29,11 @@ export const allRecipes = () => (dispatch) => {
       });
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error)
+      dispatch({
+        type: ALL_ERROR,
+        payload: true,
+      });
     });
 };
 
@@ -43,8 +49,8 @@ export const idRecipes = (id) => (dispatch) => {
     .catch((error) => {
       dispatch({
         type: ID_ERROR,
-        payload: true
-      })
+        payload: true,
+      });
     });
 };
 
@@ -58,22 +64,27 @@ export const queryRecipes = (query) => (dispatch) => {
       });
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error)
+      dispatch({
+        type: QUERY_ERROR,
+        payload: [],
+      });
     });
 };
 
 export const createRecipes = (inputs) => (dispatch) => {
-    return axios.post(LOCAL_API_RECIPES, inputs)
+  return axios
+    .post(LOCAL_API_RECIPES, inputs)
     .then((recipe) => {
-        dispatch({
-            type:CREATE_RECIPES,
-            payload: recipe.data,
-        });
+      dispatch({
+        type: CREATE_RECIPES,
+        payload: recipe.data,
+      });
     })
     .catch((error) => {
-        console.log(error)
-    })
-}
+      console.log(error);
+    });
+};
 
 export const allDiets = () => (dispatch) => {
   return axios
@@ -88,7 +99,6 @@ export const allDiets = () => (dispatch) => {
       console.log(error);
     });
 };
-
 
 export const orderRecipes = (value) => {
   return {

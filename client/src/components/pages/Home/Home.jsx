@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { allRecipes } from "../../../redux/actions";
 
 import Filter from "../../modules/Filters&Orders/Filter/Filter";
@@ -7,19 +8,26 @@ import Order from "../../modules/Filters&Orders/Order/Order";
 import SearchBar from "../../modules/Filters&Orders/SearchBar/SearchBar";
 import Pagination from "../../modules/Pagination/Pagination";
 import Recipes from "../../modules/Recipes/Recipes";
-import Header from "../../Sections/Header";
-import Footer from "../../Sections/Footer";
+import Header from "../../sections/Header/Header";
+import Footer from "../../sections/Footer/Footer";
 
 export default function Home() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const recipes = useSelector((state) => state.recipes);
+  const error = useSelector((state) => state.error.recipes);
+
   let [loading, setLoaging] = useState(true);
 
   useEffect(() => {
     dispatch(allRecipes());
+    console.log(loading)
 
     return () => {
       setLoaging(false);
+      console.log(loading)
+      console.log("termine")
     };
   }, []);
 
@@ -34,9 +42,9 @@ export default function Home() {
   const resetPage = () => setCurrentPage(1);
   //pagination
 
-  if (loading && !recipes.length) {
-    return <h1>Cargando</h1>;
-  }
+  if (error) navigate("*");
+
+  if (loading) return <h1>Cargando</h1>;
 
   return (
     <div>

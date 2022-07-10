@@ -2,6 +2,7 @@ import filter from "../../utils/functions/filter";
 import order from "../../utils/functions/order";
 import {
   ALL_DIETS,
+  ALL_ERROR,
   ALL_RECIPES,
   CLEAR_ERROR,
   CREATE_RECIPES,
@@ -10,6 +11,7 @@ import {
   ID_ERROR,
   ID_RECIPES,
   ORDER,
+  QUERY_ERROR,
   QUERY_RECIPES,
 } from "../actions";
 
@@ -22,7 +24,6 @@ const initialState = {
   error: {
     recipes: false,
     id: false,
-    query: false,
     diets: false,
   },
 };
@@ -58,6 +59,8 @@ export default function rootReducer(state = initialState, { type, payload }) {
         diets: payload,
       };
 
+    /////////////////////////
+
     case ORDER:
       lastOrder = payload;
       if (payload === "DEFAULT") {
@@ -92,6 +95,23 @@ export default function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         recipes: [...state.originalRecipes],
+      };
+
+    //////////////////////////
+
+    case ALL_ERROR:
+      return {
+        ...state,
+        error: {
+          ...state.error,
+          recipes: payload,
+        },
+      };
+
+    case QUERY_ERROR:
+      return {
+        ...state,
+        recipes: payload,
       };
 
     case ID_ERROR:

@@ -1,21 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createRecipes } from "../../../Redux/actions";
+import { allDiets, createRecipes } from "../../../redux/actions";
 
 import dietOrder from "../../../utils/functions/dietOrder";
-import validation from "../../../utils/functions/validation"
+import validation from "../../../utils/functions/validation";
 
-import Header from "../../Sections/Header";
-import Footer from "../../Sections/Footer";
-
-let input = {
-  name: "",
-  image: "",
-  summary: "",
-  score: 50,
-  steps: "",
-  diets: [],
-};
+import Header from "../../sections/Header/Header";
+import Footer from "../../sections/Footer/Footer";
 
 let inputReset = {
   name: "",
@@ -33,24 +24,44 @@ export default function CreateRecipe() {
   diets = dietOrder(diets);
 
   let [error, setError] = useState({});
+  let [input, setInput] = useState({
+    name: "",
+    image: "",
+    summary: "",
+    score: 50,
+    steps: "",
+    diets: [],
+  });
 
   useEffect(() => {
-    dispatch(allTypes());
+    dispatch(allDiets());
   }, []);
 
-  let handleChange = (e) => {
-    if(e.target.name === "diets"){
-
-    }
-
-    input = { ...input, [e.target.name]: e.target.value };
+  const handleChange = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
     setError(validation(input));
   };
 
-  let handleSubmit = (e) => {
+  const handleChecked = (e) => {
+    console.log(e.target);
+    if (input.diets.includes(e.target.value)) {
+      setInput({
+        ...input,
+        diets: [...input.diets].filter((d) => d !== e.target.value),
+      });
+      setError(validation(input));
+    } else {
+      setInput({ ...input, diets: [...input.diets, e.target.value] });
+      setError(validation(input));
+    }
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createRecipes(input));
-    input = inputReset;
+    alert('¡Something New to Cook! :)');
+    setInput(inputReset);
+    document.getElementById('createForm').reset();
   };
 
   return (
@@ -58,8 +69,8 @@ export default function CreateRecipe() {
       <div>
         <Header />
       </div>
-
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <h1>Create a New Recipe!</h1>
+      <form id='createForm'>
         <div>
           <label>*Name:</label>
           <input
@@ -105,7 +116,7 @@ export default function CreateRecipe() {
               handleChange(e);
             }}
           />
-        {error.summary && <p>{error.summary}</p>}
+          {error.summary && <p>{error.summary}</p>}
         </div>
         <p></p>
         <div>
@@ -132,9 +143,9 @@ export default function CreateRecipe() {
                       type="checkbox"
                       name="diets"
                       value={d.name}
-                      onChange={(e) => handleChange(e)}
+                      onChange={(e) => handleChecked(e)}
                     />
-                    <label>{t.name}</label>
+                    <label>{d.name}</label>
                   </div>
                 );
               })}
@@ -143,7 +154,7 @@ export default function CreateRecipe() {
         </div>
 
         <button
-          disabled={"hola"}
+          disabled={Object.values(error).length}
           type={"submit"}
           onSubmit={(e) => handleSubmit(e)}
         >

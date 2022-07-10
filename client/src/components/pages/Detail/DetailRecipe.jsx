@@ -7,7 +7,7 @@ import RecipeCard from "../../modules/RecipeCard/RecipeCard";
 
 export default function DetailRecipe() {
   const dispatch = useDispatch();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { id } = useParams();
   const recipe = useSelector((state) => state.recipe);
@@ -17,7 +17,6 @@ export default function DetailRecipe() {
     dispatch(idRecipes(id));
   }, []);
 
-  console.log(error);
   if (error) navigate("*");
  
   return (

@@ -21,6 +21,5 @@ export default function validation(input){
         error.summary = "Summary must be greater than or equal to 20 characters";
       }
 
-
-    return error
+    return error;
 }
