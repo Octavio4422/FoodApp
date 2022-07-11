@@ -77,7 +77,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
       };
 
     case FITLER:
-      if (payload === "DEFAULT") {
+      if (payload === "DEFAULT" && lastOrder === "") {
         return {
           ...state,
           recipes: state.originalRecipes,

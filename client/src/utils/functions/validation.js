@@ -1,25 +1,40 @@
-export default function validation(input){
-    const error = {}
+export default function validation(input) {
+  const error = {};
 
-    if (input.name.length < 5) {
-        error.name = "Name must be more descriptive";
-      } else if (/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\d/?~]/.test(input.name)) {
-        error.name = "Name must be a string";
-      } else if (!input.name) {
-        error.name = "Name cannot be empty";
-      }
+  //required fiels
+  if (input.name.length < 5) {
+    error.name = "Name must be more descriptive";
+  } else if (/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\d/?~]/.test(input.name)) {
+    error.name = "Name must be a string";
+  } else if (!input.name) {
+    error.name = "Name cannot be empty";
+  }
 
-      if (input.score < 1) {
-        error.score = "Height must be greater than or equal to 1";
-      } else if (input.score > 100) {
-        error.score = "Height must be less than or equal to 100";
-      } else if (!input.score) {
-        error.score = "Height cannot be null";
-      }
+  if (input.summary.length < 20) {
+    error.summary = "Summary must be more descriptive";
+  } else if (/[`!@#$%^&*()_+\-=\[\]{};':"\\|<>\d/?~]/.test(input.summary)) {
+    error.summary = "Summary must be a text without expecial caracters";
+  }  else if (!input.summary) {
+    error.summary = "Summaty cannot be empty";
+  }
 
-      if (input.summary.length < 20) {
-        error.summary = "Summary must be greater than or equal to 20 characters";
-      }
+  //required fiels
 
-    return error;
+  //non required fiels
+  if(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(input.image)){
+    error.image = "Image should be a valid url"
+  }
+
+  if (input.score < 1) {
+    error.score = "Score must be greater than or equal to 1";
+  } else if (input.score > 100) {
+    error.score = "Score must be less than or equal to 100";
+  }
+
+  if (input.diets.length) {
+    error.diets = "You recipe must belong to a food diet ";
+  }
+  //non required fiels
+
+  return error;
 }

@@ -43,7 +43,6 @@ export default function CreateRecipe() {
   };
 
   const handleChecked = (e) => {
-    console.log(e.target);
     if (input.diets.includes(e.target.value)) {
       setInput({
         ...input,
@@ -59,9 +58,9 @@ export default function CreateRecipe() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createRecipes(input));
-    alert('¡Something New to Cook! :)');
+    alert("¡Something New to Cook! :)");
     setInput(inputReset);
-    document.getElementById('createForm').reset();
+    document.getElementById("createForm").reset();
   };
 
   return (
@@ -70,7 +69,7 @@ export default function CreateRecipe() {
         <Header />
       </div>
       <h1>Create a New Recipe!</h1>
-      <form id='createForm'>
+      <form id="createForm">
         <div>
           <label>*Name:</label>
           <input
@@ -90,10 +89,11 @@ export default function CreateRecipe() {
             value={input.image}
             onChange={(e) => handleChange(e)}
           />
+          {error.image && <p>{error.image}</p>}
         </div>
         <p></p>
         <div>
-          <label>Health Score (1 the lowest and 100 the highest):</label>
+          <label>Health Score:</label>
           <input
             type={"number"}
             name={"score"}
@@ -154,7 +154,7 @@ export default function CreateRecipe() {
         </div>
 
         <button
-          disabled={Object.values(error).length}
+          disabled={Object.values(error).length || !Object.values(input).length}
           type={"submit"}
           onSubmit={(e) => handleSubmit(e)}
         >

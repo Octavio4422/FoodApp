@@ -20,15 +20,13 @@ export default function Home() {
 
   let [loading, setLoaging] = useState(true);
 
-  useEffect(() => {
-    dispatch(allRecipes());
-    console.log(loading)
+  async function recipesLoading (){
+    await dispatch(allRecipes());
+    setLoaging(false);
+  }
 
-    return () => {
-      setLoaging(false);
-      console.log(loading)
-      console.log("termine")
-    };
+  useEffect(() => {
+    recipesLoading();
   }, []);
 
   //pagination
