@@ -1,16 +1,27 @@
 import { Link } from "react-router-dom";
 
-export default function Header(){
-    return <>
-    <div>
-      <nav>
+import styles from "./Header.module.css";
+
+export default function Header() {
+  return (
+    <>
+      <nav className={styles.flexContainer}>
+        <div className={styles.nav}>
           <Link to={"/recipes"}>
-        <h1>FoodAPP</h1>
-      </Link>
-      <Link to={"/recipe/create"}>
-        <h4 >Create Recipe</h4>
-      </Link>
+            <h1>FoodAPP</h1>
+          </Link>
+
+          <div>
+            <Link to={"/recipes"}>
+              <button>Home</button>
+            </Link>
+            <Link to={"/recipe/create"}>
+              <button className={styles.create}>+ Create Recipe</button>
+            </Link>
+          </div>
+
+        </div>
       </nav>
-    </div>
     </>
+  );
 }

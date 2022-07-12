@@ -11,6 +11,8 @@ import Recipes from "../../modules/Recipes/Recipes";
 import Header from "../../sections/Header/Header";
 import Footer from "../../sections/Footer/Footer";
 
+import styles from "./Home.module.css";
+
 export default function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,7 +22,7 @@ export default function Home() {
 
   let [loading, setLoaging] = useState(true);
 
-  async function recipesLoading (){
+  async function recipesLoading() {
     await dispatch(allRecipes());
     setLoaging(false);
   }
@@ -45,21 +47,25 @@ export default function Home() {
   if (loading) return <h1>Cargando</h1>;
 
   return (
-    <div>
-      <div>
+    <div className={styles.flexContainer}>
+      <div className={styles.header}>
         <Header />
       </div>
-      <Order />
-      <Filter resetPage={resetPage} />
-      <SearchBar resetPage={resetPage} />
-      <Pagination
-        currentPage={currentPage}
-        cardsPerPage={cardsPerPage}
-        totalCards={recipes.length}
-        paginate={paginate}
-      />
-      <Recipes recipes={currentCard} />
+      <div className={styles.filters} >
+        <SearchBar resetPage={resetPage} />
+        <Order />
+        <Filter resetPage={resetPage} />
+      </div>
       <div>
+        <Pagination
+          currentPage={currentPage}
+          cardsPerPage={cardsPerPage}
+          totalCards={recipes.length}
+          paginate={paginate}
+        />
+        <Recipes recipes={currentCard} />
+      </div>
+      <div className={styles.footer}>
         <Footer />
       </div>
     </div>
