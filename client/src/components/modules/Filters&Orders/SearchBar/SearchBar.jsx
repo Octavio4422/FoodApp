@@ -19,7 +19,7 @@ export default function SearchBar({ resetPage }) {
       <form onSubmit={(e) => handleSumbit(e)}>
         <input
           type={"text"}
-          placeholder="Search Recipes"
+          placeholder="Search Recipes by Name"
           onChange={(e) => setInput(e.target.value)}
         />
         <button onClick={handleSumbit}>Search</button>

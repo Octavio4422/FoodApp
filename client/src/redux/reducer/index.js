@@ -111,7 +111,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
     case QUERY_ERROR:
       return {
         ...state,
-        recipes: payload,
+        recipes: [],
       };
 
     case ID_ERROR:

@@ -1,8 +1,9 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { orderRecipes } from "../../../../redux/actions";
 
 export default function Order() {
   const dispatch = useDispatch();
+  const recipes = useSelector((state) => state.recipes);
 
   function onSelect(e) {
     dispatch(orderRecipes(e.target.value));
@@ -10,7 +11,7 @@ export default function Order() {
 
   return (
     <>
-      <select name="select" onChange={onSelect}>
+      <select name="select" disabled={!recipes.length} onChange={onSelect}>
         <option value="DEFAULT">Select a Distribution</option>
         <option value="ASCENDENTE">A to Z</option>
         <option value="DESCENDENTE">Z to A</option>

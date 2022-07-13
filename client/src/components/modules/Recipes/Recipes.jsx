@@ -4,7 +4,10 @@ export default function Recipes({ recipes }) {
   return (
     <>
       {!recipes.length ? (
-        <h1>Oh no!</h1>
+        <h2>Oh no! I think that the recipe you are lookin for does not exist.
+          <p></p>
+          You should check the field or create it!
+        </h2>
       ) : (
         <div>
           {recipes.map((r) => {

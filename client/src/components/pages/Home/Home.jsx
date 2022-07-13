@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { allRecipes } from "../../../redux/actions";
+import { allRecipes, emptyInput } from "../../../redux/actions";
 
 import Filter from "../../modules/Filters&Orders/Filter/Filter";
 import Order from "../../modules/Filters&Orders/Order/Order";
@@ -31,6 +31,11 @@ export default function Home() {
     recipesLoading();
   }, []);
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(emptyInput());
+  }
+
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 9;
@@ -42,19 +47,37 @@ export default function Home() {
   const resetPage = () => setCurrentPage(1);
   //pagination
 
-  if (error) navigate("*");
+  // if (error) navigate("*");
 
-  if (loading) return <h1>Cargando</h1>;
+  if (loading) {
+    return (
+      <div className={styles.flexContainer}>
+        <div className={styles.header}>
+          <Header />
+        </div>
+        <h1>Cargando</h1>
+        <div className={styles.footer}>
+          <Footer />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.flexContainer}>
       <div className={styles.header}>
         <Header />
       </div>
-      <div className={styles.filters} >
+      <div className={styles.filters}>
         <SearchBar resetPage={resetPage} />
-        <Order />
-        <Filter resetPage={resetPage} />
+        <p>Or you can</p>
+        <div>
+          <Order />
+          <Filter resetPage={resetPage} />
+        </div>
+        <div>
+          <button onClick={(e) => handleClick(e)}  >Reset Parameters</button>
+        </div>
       </div>
       <div>
         <Pagination

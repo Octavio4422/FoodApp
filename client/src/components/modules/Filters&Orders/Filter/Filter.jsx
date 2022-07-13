@@ -5,6 +5,7 @@ import dietOrder from "../../../../utils/functions/dietOrder";
 
 export default function Filter({ resetPage }) {
   const dispatch = useDispatch();
+  const recipes = useSelector((state) => state.recipes);
   let diets = useSelector((state) => state.diets);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ export default function Filter({ resetPage }) {
 
   return (
     <>
-      <select name="select" onChange={onSelect}>
+      <select disabled={!recipes.length} name="select" onChange={onSelect}>
         <option value="DEFAULT">Select a Diet Filter</option>
         {diets &&
           diets.map((d) => {
