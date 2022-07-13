@@ -10,7 +10,7 @@ export default function validation(input) {
     error.name = "Name cannot be empty";
   }
 
-  if (input.summary.length < 20) {
+  if (input.summary.length < 50) {
     error.summary = "Summary must be more descriptive";
   } else if (/[`!@#$%^&*()_+\-=\[\]{};':"\\|<>\d/?~]/.test(input.summary)) {
     error.summary = "Summary must be a text without expecial caracters";

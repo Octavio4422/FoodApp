@@ -3,7 +3,12 @@ import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { idRecipes } from "../../../redux/actions";
+
 import RecipeCard from "../../modules/RecipeCard/RecipeCard";
+import Header from "../../sections/Header/Header";
+import Footer from "../../sections/Footer/Footer";
+
+import styles from "./Detail.module.css";
 
 export default function DetailRecipe() {
   const dispatch = useDispatch();
@@ -18,9 +23,12 @@ export default function DetailRecipe() {
   }, []);
 
   if (error) navigate("*");
- 
+
   return (
     <div>
+      <div>
+        <Header />
+      </div>
       <div>
         <RecipeCard
           detail={true}
@@ -31,6 +39,9 @@ export default function DetailRecipe() {
           diets={recipe.diets}
           steps={recipe.steps}
         />
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );

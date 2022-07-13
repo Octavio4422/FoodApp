@@ -1,0 +1,80 @@
+.flexContainer {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.form {
+    color: rgb(133, 217, 150);
+    background-color: rgb(60, 66, 87);
+    border-radius: 50px;
+    width: 60%;
+    padding: 10px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 15px;
+
+}
+
+.input input {
+    background-color: rgb(245, 247, 250);
+    border: 1px solid rgb(133, 217, 150);
+    border-radius: 5%;
+    padding: 20px;
+}
+
+.input p {
+    color: red;
+}
+
+.textarea {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 15px;
+}
+
+.textarea textarea {
+    resize: none;
+    background-color: rgb(245, 247, 250);
+    border: 1px solid rgb(133, 217, 150);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.textarea p {
+    color: red;
+}
+
+.diets {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+.diets div {
+    display: grid;
+    grid-template-columns:repeat(5, 1fr);
+}
+
+.diets div p {
+    color: red;
+}
+
+.footer{
+    width: 100%;
+    margin-top: auto;
+}
