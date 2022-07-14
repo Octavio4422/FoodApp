@@ -1,0 +1,25 @@
+.flexContainer {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-color: rgb(1, 176, 88);
+    border-radius: 10px;
+    max-width: 450px;
+}
+
+.card {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.card div h3 {
+    margin: 10px;
+}
+
+.card div img {
+    border: 2px solid  rgb(60, 66, 87);
+}
+.button {
+    margin-top: auto;
+    margin-bottom: 10px;
+}

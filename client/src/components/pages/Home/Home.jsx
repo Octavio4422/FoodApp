@@ -12,6 +12,7 @@ import Header from "../../sections/Header/Header";
 import Footer from "../../sections/Footer/Footer";
 
 import styles from "./Home.module.css";
+import gif from "../../../Images/loadingGIF.gif"
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ export default function Home() {
   const resetPage = () => setCurrentPage(1);
   //pagination
 
-  // if (error) navigate("*");
+  if (error) navigate("*");
 
   if (loading) {
     return (
@@ -55,7 +56,9 @@ export default function Home() {
         <div className={styles.header}>
           <Header />
         </div>
-        <h1>Cargando</h1>
+        <div className={styles.gif} >
+        <img alt="loading gif" src={gif} />
+        </div>
         <div className={styles.footer}>
           <Footer />
         </div>
@@ -79,7 +82,7 @@ export default function Home() {
           <button onClick={(e) => handleClick(e)}  >Reset Parameters</button>
         </div>
       </div>
-      <div>
+      <div className={styles.home} >
         <Pagination
           currentPage={currentPage}
           cardsPerPage={cardsPerPage}
@@ -87,6 +90,12 @@ export default function Home() {
           paginate={paginate}
         />
         <Recipes recipes={currentCard} />
+        <Pagination
+          currentPage={currentPage}
+          cardsPerPage={cardsPerPage}
+          totalCards={recipes.length}
+          paginate={paginate}
+        />
       </div>
       <div className={styles.footer}>
         <Footer />

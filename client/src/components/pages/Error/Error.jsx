@@ -16,12 +16,17 @@ export default function Error() {
 
   return (
     <div className={styles.flexContainer}>
-      <div>
-        <div>
+      <div className={styles.container}>
+
+        <h1>Oh no! An Error has happened, but don´t worry </h1>
+        
+
+        <div className={styles.button} >
           <Link to={"/recipes"}>
             <button>Let´s Try Again</button>
           </Link>
         </div>
+
       </div>
 
       <div className={styles.footer}>

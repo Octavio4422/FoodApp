@@ -1,5 +1,7 @@
 import RecipeCard from "../RecipeCard/RecipeCard";
 
+import styles from "./Recipes.module.css"
+
 export default function Recipes({ recipes }) {
   return (
     <>
@@ -9,7 +11,7 @@ export default function Recipes({ recipes }) {
           You should check the field or create it!
         </h2>
       ) : (
-        <div>
+        <div className={styles.recipes} >
           {recipes.map((r) => {
             return (
               <RecipeCard
