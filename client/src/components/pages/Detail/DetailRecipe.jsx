@@ -25,8 +25,8 @@ export default function DetailRecipe() {
   if (error) navigate("*");
 
   return (
-    <div>
-      <div>
+    <div className={styles.flexContainer} >
+      <div className={styles.header} >
         <Header />
       </div>
       <div>
@@ -40,7 +40,7 @@ export default function DetailRecipe() {
           steps={recipe.steps}
         />
       </div>
-      <div>
+      <div className={styles.footer} >
         <Footer />
       </div>
     </div>
