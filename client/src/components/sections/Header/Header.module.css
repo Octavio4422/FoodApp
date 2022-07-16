@@ -15,7 +15,9 @@
 }
 
 .title {
-    font-size: 2.5em;
+    font-size: 2em;
+    background-color: rgb(245, 247, 250);
+    border: none;
     color:  rgb(1, 176, 88);
 }
 

@@ -75,8 +75,8 @@ export default function CreateRecipe() {
       <div className={styles.form}>
 
         <div className={styles.title}>
-          <h1>Create a New Recipe!</h1>
-          <h3>Fields with * are Required</h3>
+          <h1>Create a New Recipe</h1>
+          <h3>Fields with * are required!</h3>
         </div>
 
         <form id="createForm">
@@ -124,7 +124,7 @@ export default function CreateRecipe() {
               cols="100"
               name="summary"
               value={input.summary}
-              placeholder="Use this text area for shortly describe your Recipe...."
+              placeholder="Use this text area for describe your Recipe...."
               onChange={(e) => {
                 handleChange(e);
               }}

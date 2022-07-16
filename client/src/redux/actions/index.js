@@ -29,7 +29,7 @@ export const allRecipes = () => (dispatch) => {
       });
     })
     .catch((error) => {
-      console.log(error)
+      console.log(error.message)
       dispatch({
         type: ALL_ERROR,
         payload: true,
@@ -47,6 +47,7 @@ export const idRecipes = (id) => (dispatch) => {
       });
     })
     .catch((error) => {
+      console.log(error.message)
       dispatch({
         type: ID_ERROR,
         payload: true,
@@ -64,7 +65,6 @@ export const queryRecipes = (query) => (dispatch) => {
       });
     })
     .catch((error) => {
-      console.log(error)
       dispatch({
         type: QUERY_ERROR,
         payload: [],
@@ -82,7 +82,7 @@ export const createRecipes = (inputs) => (dispatch) => {
       });
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error.message);
     });
 };
 
@@ -96,7 +96,7 @@ export const allDiets = () => (dispatch) => {
       });
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error.message);
     });
 };
 

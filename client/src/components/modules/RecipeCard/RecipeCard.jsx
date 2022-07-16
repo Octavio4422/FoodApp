@@ -5,7 +5,7 @@ export default function RecipeCard({
   detail,
   id,
   name,
-  image,
+  img,
   summary,
   score,
   diets,
@@ -13,35 +13,39 @@ export default function RecipeCard({
 }) {
   if (detail) {
     return (
-      <div>
-        <div>
-          <div>
-            <img alt={name} src={image} />
-          </div>
-
-          <div>
-            <Link to={"/recipes"}>
-              <button> ⇦ </button>
-            </Link>
-            <h1>{name}</h1>
-            <p>{summary}</p>
-            <h3>{score}</h3>
-            <h2>Steps:</h2>
-            {steps.length ? (
-              steps.map((s) => {
-                return <p>•{s}</p>;
-              })
-            ) : (
-              <h3> "This recipe no contain steps, mabye its too easy? 🤔"</h3>
-            )}
-            <ul>
-              {diets &&
-                diets.map((d) => {
-                  return <h4 key={d}>{d}</h4>;
-                })}
-            </ul>
-          </div>
+      <div className={styles.dFlexContainer}>
+        <div className={styles.dTitle}>
+          <Link to={"/recipes"}> <button> ⇦ </button> </Link>
+          <h1>{name}</h1>
         </div>
+
+        <div className={styles.dImage}>
+          <img src={img} alt={name} />
+        </div>
+        <div>
+          <h2>Health Score:</h2>
+          <p>{score}</p>
+        </div>
+
+        <p>{summary}</p>
+        <h2>Steps:</h2>
+        {steps.length ? (
+          steps.map((s, i) => {
+            return (
+              <p key={s}>
+                •<strong>{i + 1}</strong> {s}
+              </p>
+            );
+          })
+        ) : (
+          <h3> "This recipe no contain steps, mabye its too easy? 🤔"</h3>
+        )}
+        <ul>
+          {diets &&
+            diets.map((d) => {
+              return <p key={d}>{d}</p>;
+            })}
+        </ul>
       </div>
     );
   }
@@ -55,7 +59,7 @@ export default function RecipeCard({
           <ul>
             {diets &&
               diets.map((d) => {
-                return <h4 key={d}>{d}</h4>;
+                return <p key={d}>{d}</p>;
               })}
           </ul>
 
