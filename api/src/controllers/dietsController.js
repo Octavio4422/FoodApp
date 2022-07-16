@@ -5,7 +5,8 @@ async function getDiets(req, res, next) {
     let response = await dietCreator();
     return res.status(200).json(response);
   } catch (e) {
-    return next(e);
+    console.log(e.message);
+    return res.status(400).json("Error in getDiets")
   }
 }
 

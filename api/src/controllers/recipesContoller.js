@@ -46,7 +46,8 @@ async function getRecipes(req, res, next) {
       return res.status(200).json(response);
     }
   } catch (e) {
-    return next(e);
+    console.log(e.message);
+    return res.status(400).json("error in getRecipes")
   }
 }
 
@@ -72,7 +73,8 @@ async function getRecipeId(req, res, next) {
       return res.status(200).json(apiResponse);
     }
   } catch (e) {
-    return next(e);
+    console.log(e.message);
+    return res.status(400).json("error in getRecipesId")
   }
 }
 
@@ -106,7 +108,8 @@ async function postRecipe(req, res, next) {
 
     return res.status(201).json(dbParser(response));
   } catch (e) {
-    next(e);
+    console.log(e.message);
+    return res.status(400).json("error in postRecipes")
   }
 }
 
