@@ -15,37 +15,53 @@ export default function RecipeCard({
     return (
       <div className={styles.dFlexContainer}>
         <div className={styles.dTitle}>
-          <Link to={"/recipes"}> <button> ⇦ </button> </Link>
+          <Link to={"/recipes"}>
+            {" "}
+            <button> ⇦ Back </button>{" "}
+          </Link>
           <h1>{name}</h1>
         </div>
 
         <div className={styles.dImage}>
-          <img src={img} alt={name} />
+        {img.length? <img src={img} alt={name} /> : <div className={styles.dNoImg} ><b>No image available</b></div> }
         </div>
         <div>
-          <h2>Health Score:</h2>
-          <p>{score}</p>
+          <p>{summary}</p>
         </div>
 
-        <p>{summary}</p>
-        <h2>Steps:</h2>
-        {steps.length ? (
-          steps.map((s, i) => {
-            return (
-              <p key={s}>
-                •<strong>{i + 1}</strong> {s}
-              </p>
-            );
-          })
-        ) : (
-          <h3> "This recipe no contain steps, mabye its too easy? 🤔"</h3>
-        )}
-        <ul>
+        <div className={styles.dScore}>
+          <h2>Health Score:</h2>
+          <strong>
+            {" "}
+            <p>{score} points </p>{" "}
+          </strong>
+        </div>
+        <div className={styles.dDiets}>
+          <h2>Diets:</h2>
+
           {diets &&
             diets.map((d) => {
-              return <p key={d}>{d}</p>;
+              return (
+                <i key={d}> {d.charAt(0).toUpperCase() + d.slice(1)} • </i>
+              );
             })}
-        </ul>
+        </div>
+        <div>
+          <h2>Steps:</h2>
+          {steps.length ? (
+            steps.map((s, i) => {
+              return ( 
+                <p key={s}>
+                  •<strong>{i + 1}</strong> {s}
+                </p>
+              );
+            })
+          ) : (
+            <strong>
+              <p>• "This recipe no contain steps, mabye its too easy? 🤔"</p>
+            </strong>
+          )}
+        </div>
       </div>
     );
   }
@@ -55,13 +71,18 @@ export default function RecipeCard({
       <div className={styles.card}>
         <div>
           <h3>{name}</h3>
-          <img src={img} alt={name} />
-          <ul>
+          {img.length? <img src={img} alt={name} /> : <div className={styles.noImg} ><b>No image available</b></div> }
+
+          <div>
+            <h5>
+              ⇩ This recipe is suitable for people with the following diets ⇩
+            </h5>
+            -{" "}
             {diets &&
               diets.map((d) => {
-                return <p key={d}>{d}</p>;
+                return <i key={d}>{d.charAt(0).toUpperCase() + d.slice(1)} - </i>;
               })}
-          </ul>
+          </div>
 
           <div className={styles.button}>
             <Link to={`/recipe/${id}`}>
