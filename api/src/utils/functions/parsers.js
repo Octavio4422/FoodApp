@@ -15,7 +15,6 @@ function dbParser(obj){
    const response = {
       id: obj.id,
       name: obj.name,
-      image: obj.image,
       summary: obj.summary,
       score: obj.score,
       diets: obj.diets.map((d) => d.name),
