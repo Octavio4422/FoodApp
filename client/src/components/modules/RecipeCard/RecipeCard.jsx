@@ -23,7 +23,7 @@ export default function RecipeCard({
         </div>
 
         <div className={styles.dImage}>
-        {img.length? <img src={img} alt={name} /> : <div className={styles.dNoImg} ><b>No image available</b></div> }
+        {img !== undefined ? <img src={img} alt={name} /> : <div className={styles.dNoImg} ><b>No image available</b></div> }
         </div>
         <div>
           <p>{summary}</p>
@@ -71,7 +71,7 @@ export default function RecipeCard({
       <div className={styles.card}>
         <div>
           <h3>{name}</h3>
-          {img.length? <img src={img} alt={name} /> : <div className={styles.noImg} ><b>No image available</b></div> }
+          {img !== undefined ? <img src={img} alt={name} /> : <div className={styles.noImg} ><b>No image available</b></div> }
 
           <div>
             <h5>

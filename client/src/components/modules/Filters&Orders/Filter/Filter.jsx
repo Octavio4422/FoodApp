@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { allDiets, filterRecipes } from "../../../../redux/actions";
 import dietOrder from "../../../../utils/functions/dietOrder";
 
+import styles from "./Filter.module.css"
+
 export default function Filter({ resetPage }) {
   const dispatch = useDispatch();
   const recipes = useSelector((state) => state.recipes);
@@ -20,7 +22,7 @@ export default function Filter({ resetPage }) {
   diets = dietOrder(diets);
 
   return (
-    <>
+    <div className={styles.filter} >
       <select disabled={!recipes.length} name="select" onChange={onSelect}>
         <option value="DEFAULT">Select a Diet Filter</option>
         {diets &&
@@ -32,6 +34,6 @@ export default function Filter({ resetPage }) {
             );
           })}
       </select>
-    </>
+    </div>
   );
 }

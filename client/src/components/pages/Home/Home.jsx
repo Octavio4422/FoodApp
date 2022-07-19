@@ -12,7 +12,7 @@ import Header from "../../sections/Header/Header";
 import Footer from "../../sections/Footer/Footer";
 
 import styles from "./Home.module.css";
-import gif from "../../../Images/loadingGIF.gif"
+import gif from "../../../Images/loadingGIF.gif";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ export default function Home() {
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(emptyInput());
-  }
+  };
 
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -56,8 +56,8 @@ export default function Home() {
         <div className={styles.header}>
           <Header />
         </div>
-        <div className={styles.gif} >
-        <img alt="loading gif" src={gif} />
+        <div className={styles.gif}>
+          <img alt="loading gif" src={gif} />
         </div>
         <div className={styles.footer}>
           <Footer />
@@ -73,16 +73,20 @@ export default function Home() {
       </div>
       <div className={styles.filters}>
         <SearchBar resetPage={resetPage} />
-        <p>Or you can</p>
+        <p> <b>Or You Can</b> </p>
         <div>
-          <Order />
-          <Filter resetPage={resetPage} />
+          <div className={styles.order} >
+            <Order />
+          </div>
+          <div className={styles.filter} >
+            <Filter resetPage={resetPage} />
+          </div>
         </div>
-        <div>
-          <button onClick={(e) => handleClick(e)}  >Reset Parameters</button>
+        <div className={styles.resetButton}>
+          <button onClick={(e) => handleClick(e)}>Reset Parameters</button>
         </div>
       </div>
-      <div className={styles.home} >
+      <div className={styles.home}>
         <Pagination
           currentPage={currentPage}
           cardsPerPage={cardsPerPage}

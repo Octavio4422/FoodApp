@@ -21,17 +21,13 @@ export default function validation(input) {
   //required fiels
 
   //non required fiels
-  if(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(input.image)){
-    error.image = "Image should be a valid url"
-  }
-
   if (input.score < 1) {
     error.score = "Score must be greater than or equal to 1";
   } else if (input.score > 100) {
     error.score = "Score must be less than or equal to 100";
   }
 
-  if (input.diets.length) {
+  if (!input.diets.length <= 0 ) {
     error.diets = "You recipe must belong to a food diet ";
   }
   //non required fiels

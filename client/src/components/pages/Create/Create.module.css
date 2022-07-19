@@ -4,13 +4,14 @@
     flex-direction: column;
     text-align: center;
     justify-content: center;
+
 }
 
 .form {
     color: rgb(133, 217, 150);
     background-color: rgb(60, 66, 87);
     border-radius: 50px;
-    width: 60%;
+    width: 50vw;
     padding: 10px;
     margin: auto;
     margin-top: 20px;
@@ -62,15 +63,17 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
+    width: 100%;
+    /* background-color: aqua; */
 }
 
 .diets div {
     display: grid;
-    grid-template-columns:repeat(5, 1fr);
+    grid-template-columns:repeat(4, auto);
+    gap: 15px;
 }
 
-.diets div p {
+.diets p {
     color: red;
 }
 

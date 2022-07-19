@@ -59,27 +59,25 @@ export default function CreateRecipe() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("hola si llegue");
     dispatch(createRecipes(input));
     alert("¡Something New to Cook! :)");
     setInput(inputReset);
-    document.getElementById("createForm").reset();
   };
 
   return (
     <div className={styles.flexContainer}>
-
       <div>
         <Header />
       </div>
 
       <div className={styles.form}>
-
         <div className={styles.title}>
           <h1>Create a New Recipe</h1>
           <h3>Fields with * are required!</h3>
         </div>
 
-        <form id="createForm">
+        <form id="createForm" onSubmit={(e) => handleSubmit(e)}>
           <div className={styles.input}>
             <label>*Name:</label>
             <input
@@ -90,18 +88,6 @@ export default function CreateRecipe() {
               onChange={(e) => handleChange(e)}
             />
             {error.name && <p>{error.name}</p>}
-          </div>
-          <p></p>
-          <div className={styles.input}>
-            <label>Image:</label>
-            <input
-              placeholder="image"
-              type={"url"}
-              name={"image"}
-              value={input.image}
-              onChange={(e) => handleChange(e)}
-            />
-            {error.image && <p>{error.image}</p>}
           </div>
           <p></p>
           <div className={styles.input}>
@@ -117,7 +103,7 @@ export default function CreateRecipe() {
             />
             {error.score && <p>{error.score}</p>}
           </div>
-          <div className={styles.textarea} >
+          <div className={styles.textarea}>
             <label>*Summary:</label>
             <textarea
               rows="5"
@@ -132,7 +118,7 @@ export default function CreateRecipe() {
             {error.summary && <p>{error.summary}</p>}
           </div>
           <p></p>
-          <div className={styles.textarea} >
+          <div className={styles.textarea}>
             <label>Steps:</label>
             <textarea
               rows="5"
@@ -145,7 +131,7 @@ export default function CreateRecipe() {
               }}
             />
           </div>
-          <div className={styles.diets} >
+          <div className={styles.diets}>
             <label>Diets:</label>
             <div>
               {diets &&
@@ -158,12 +144,14 @@ export default function CreateRecipe() {
                         value={d.name}
                         onChange={(e) => handleChecked(e)}
                       />
-                      <label>{d.name}</label>
+                      <label>
+                        <i>{d.name}</i>
+                      </label>
                     </div>
                   );
                 })}
-              {error.diets && <p>{error.diets}</p>}
             </div>
+              {error.diets && <p>{error.diets}</p>}
           </div>
 
           <button
@@ -174,18 +162,15 @@ export default function CreateRecipe() {
               !input.diets.length
             }
             type={"submit"}
-            onSubmit={(e) => handleSubmit(e)}
           >
             Create Recipe
           </button>
         </form>
-        
       </div>
 
       <div className={styles.footer}>
         <Footer />
       </div>
-
     </div>
   );
 }
