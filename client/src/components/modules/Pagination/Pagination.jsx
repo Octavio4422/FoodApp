@@ -1,9 +1,6 @@
-export default function Pagination({
-  currentPage,
-  cardsPerPage,
-  totalCards,
-  paginate,
-}) {
+import styles from "./Pagination.module.css"
+
+export default function Pagination({ currentPage, cardsPerPage, totalCards, paginate}) {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalCards / cardsPerPage); i++) {
@@ -11,8 +8,8 @@ export default function Pagination({
   }
 
   return (
-    <nav>
-      <ul>
+    <nav className={styles.pagination} >
+
         {!pageNumbers.length ? (
           true
         ) : (
@@ -40,7 +37,7 @@ export default function Pagination({
             NEXT
           </button>
         )}
-      </ul>
+
     </nav>
   );
 }

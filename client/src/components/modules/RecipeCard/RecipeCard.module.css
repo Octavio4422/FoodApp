@@ -73,6 +73,10 @@
 .dTitle button {
     position: absolute;
     left: 20px;
+    top: 35px;
+    background-color: rgb(1, 176, 88);
+    border-radius: 10px;
+    text-decoration: none;
 }
 
 .dScore {

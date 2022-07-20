@@ -21,13 +21,19 @@ let inputReset = {
 };
 
 export default function CreateRecipe() {
+  //hooks
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  //hooks
 
+  //reducer selectors
   const createError = useSelector((state) => state.error.create);
   let diets = useSelector((state) => state.diets);
+  //reducer selectors
+
   diets = dietOrder(diets);
 
+  //states
   let [error, setError] = useState({});
   let [input, setInput] = useState({
     name: "",
@@ -37,12 +43,14 @@ export default function CreateRecipe() {
     steps: "",
     diets: [],
   });
+  //states
 
   useEffect(() => {
     dispatch(allRecipes());
     dispatch(allDiets());
   }, []);
 
+  //handlers
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
     setError(validation(input));
@@ -67,10 +75,13 @@ export default function CreateRecipe() {
     if (createError) {
       navigate("*");
     } else {
-      alert("¡Something New to Cook! :)");
+      window.alert("¡Something New to Cook! :)");
       setInput(inputReset);
+      document.getElementById("createForm").reset();
+      navigate("/recipes");
     }
   };
+  //handlers
 
   return (
     <div className={styles.flexContainer}>
@@ -160,18 +171,19 @@ export default function CreateRecipe() {
             </div>
             {error.diets && <p>{error.diets}</p>}
           </div>
-
-          <button
-            disabled={
-              Object.keys(error).length ||
-              !input.name ||
-              !input.summary ||
-              !input.diets.length
-            }
-            type={"submit"}
-          >
-            Create Recipe
-          </button>
+          <div className={styles.submit}>
+            <button
+              disabled={
+                Object.keys(error).length ||
+                !input.name ||
+                !input.summary ||
+                !input.diets.length
+              }
+              type={"submit"}
+            >
+              Create Recipe
+            </button>
+          </div>
         </form>
       </div>
 

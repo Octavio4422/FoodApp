@@ -77,6 +77,18 @@
     color: red;
 }
 
+.submit {
+    margin: 10px;
+}
+
+.submit button {
+    /* background-color: rgb(1, 176, 88); */
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
 .footer{
     width: 100%;
     margin-top: auto;

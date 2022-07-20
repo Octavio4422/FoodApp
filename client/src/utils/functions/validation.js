@@ -27,7 +27,7 @@ export default function validation(input) {
     error.score = "Score must be less than or equal to 100";
   }
 
-  if (!input.diets.length <= 0 ) {
+  if (input.diets.length <= 0 ) {
     error.diets = "You recipe must belong to a food diet ";
   }
   //non required fiels

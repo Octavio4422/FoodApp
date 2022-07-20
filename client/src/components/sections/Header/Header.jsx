@@ -21,10 +21,10 @@ export default function Header() {
 
           <div>
             <Link to={"/recipes"}>
-              <button className={styles.button}>Home</button>
+              <button className={styles.button}><b>Home</b></button>
             </Link>
             <Link to={"/recipe/create"}>
-              <button className={styles.button}>+ Create</button>
+              <button className={styles.button}><b>+ Create</b></button>
             </Link>
           </div>
         </div>
