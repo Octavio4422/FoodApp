@@ -5,6 +5,7 @@ import {
   ALL_ERROR,
   ALL_RECIPES,
   CLEAR_ERROR,
+  CREATE_ERROR,
   CREATE_RECIPES,
   EMPTY_INPUT,
   FITLER,
@@ -25,6 +26,7 @@ const initialState = {
     recipes: false,
     id: false,
     diets: false,
+    create: false,
   },
 };
 
@@ -122,6 +124,15 @@ export default function rootReducer(state = initialState, { type, payload }) {
           id: payload,
         },
       };
+
+      case CREATE_ERROR:
+      return {
+        ...state ,
+        error : {
+          ...state.error,
+          create: payload,
+        }
+      }
 
     case CLEAR_ERROR:
       return {

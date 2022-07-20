@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allDiets, createRecipes } from "../../../redux/actions";
+import { useNavigate } from "react-router";
+import { allDiets, allRecipes, createRecipes } from "../../../redux/actions";
 
 import dietOrder from "../../../utils/functions/dietOrder";
 import validation from "../../../utils/functions/validation";
@@ -21,7 +22,9 @@ let inputReset = {
 
 export default function CreateRecipe() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const createError = useSelector((state) => state.error.create);
   let diets = useSelector((state) => state.diets);
   diets = dietOrder(diets);
 
@@ -36,6 +39,7 @@ export default function CreateRecipe() {
   });
 
   useEffect(() => {
+    dispatch(allRecipes());
     dispatch(allDiets());
   }, []);
 
@@ -59,10 +63,13 @@ export default function CreateRecipe() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("hola si llegue");
     dispatch(createRecipes(input));
-    alert("¡Something New to Cook! :)");
-    setInput(inputReset);
+    if (createError) {
+      navigate("*");
+    } else {
+      alert("¡Something New to Cook! :)");
+      setInput(inputReset);
+    }
   };
 
   return (
@@ -151,7 +158,7 @@ export default function CreateRecipe() {
                   );
                 })}
             </div>
-              {error.diets && <p>{error.diets}</p>}
+            {error.diets && <p>{error.diets}</p>}
           </div>
 
           <button

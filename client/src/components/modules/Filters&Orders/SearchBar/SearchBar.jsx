@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { emptyInput, queryRecipes } from "../../../../redux/actions";
 
+import styles from "./SearchBar.module.css"
+
 export default function SearchBar({ resetPage }) {
   let dispatch = useDispatch();
 
@@ -15,8 +17,8 @@ export default function SearchBar({ resetPage }) {
   };
 
   return (
-    <>
-      <form onSubmit={(e) => handleSumbit(e)}>
+    <div>
+      <form className={styles.searchBar}  onSubmit={(e) => handleSumbit(e)}>
         <input
           type={"text"}
           placeholder="Search Recipes by Name"
@@ -24,6 +26,6 @@ export default function SearchBar({ resetPage }) {
         />
         <button onClick={handleSumbit}>Search</button>
       </form>
-    </>
+    </div>
   );
 }

@@ -1,0 +1,25 @@
+.searchBar input {
+    margin: 0 0.25em;
+    padding: 0 0.5em;
+    background-color: rgb(245, 247, 250);
+    height: 2em;
+    width: auto;
+    font-size: 1rem;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 5px;
+}
+
+.searchBar button {
+    padding: 0 0.5em;
+    background-color: rgb(60, 66, 87);
+    height: 2em;
+    width: auto;
+    font-size: 1rem;
+    color: #fff;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 5px;
+}

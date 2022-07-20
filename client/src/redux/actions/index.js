@@ -17,6 +17,7 @@ export const EMPTY_INPUT = "EMPTY_INPUT";
 export const ALL_ERROR = "ALL_ERROR";
 export const QUERY_ERROR = "QUERY_ERROR";
 export const ID_ERROR = "ID_ERROR";
+export const CREATE_ERROR = "CREATE_ERROR";
 export const CLEAR_ERROR = "CLEAR_ERROR";
 
 export const allRecipes = () => (dispatch) => {
@@ -65,6 +66,7 @@ export const queryRecipes = (query) => (dispatch) => {
       });
     })
     .catch((error) => {
+      console.log(error.message);
       dispatch({
         type: QUERY_ERROR,
         payload: [],
@@ -83,6 +85,10 @@ export const createRecipes = (inputs) => (dispatch) => {
     })
     .catch((error) => {
       console.log(error.message);
+      dispatch({
+        type: CREATE_ERROR,
+        payload: true,
+      })
     });
 };
 
