@@ -1,5 +1,6 @@
 require("dotenv").config();
 const axios = require("axios");
+const { Op } = require("sequelize");
 const { Recipe, Diet } = require("../db.js");
 const { apiParser, dbParser } = require("../utils/functions/parsers.js");
 const { dietCreator } = require("../utils/functions/dietCreator.js");
@@ -79,16 +80,20 @@ async function getRecipeId(req, res) {
 }
 
 async function postRecipe(req, res) {
-  const { name, summary, score, steps, diets } = req.body;
+  let { name, summary, score, steps, diets } = req.body;
 
   //validation
-  if(!name) return res.status(400).json("Name cannot be empty")
-  if(!summary) return res.status(400).json("Summary cannot be empty")
-  if(!diets.length) return res.status(400).json("The recipe must belong to a Diet")
+  if(!name) return res.status(400).json("Name cannot be empty");
+  if(!summary) return res.status(400).json("Summary cannot be empty");
+  if(!diets.length) return res.status(400).json("The recipe must belong to a Diet");
+  if(steps.trim().split('.')[0] === "") steps = "";
   //validation
+
   try {
     await dietCreator();
-
+    name = name.trim();
+    name = name.charAt(0).toUpperCase() + name.toLowerCase().slice(1);
+    
     const [recipe, created] = await Recipe.findOrCreate({
       where: { name: name },
       defaults: {

@@ -27,6 +27,10 @@ export default function validation(input) {
     error.score = "Score must be less than or equal to 100";
   }
 
+  if(input.steps.charAt(0) === "."){
+    error.steps = "Steps must start with a string"
+  }
+
   if (input.diets.length <= 0 ) {
     error.diets = "You recipe must belong to a food diet ";
   }

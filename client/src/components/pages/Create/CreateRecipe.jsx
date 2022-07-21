@@ -143,12 +143,14 @@ export default function CreateRecipe() {
               cols="100"
               name="steps"
               value={input.steps}
-              placeholder="Use this text area for describe each preparation step of you Recipe. SEPARATE EACH STEP USING A '.'"
+              placeholder={"Use this text area for describe each step of you Recipe. SEPARATE EACH STEP USING A '.'"}
               onChange={(e) => {
                 handleChange(e);
               }}
             />
+          {error.steps && <p>{error.steps}</p>}
           </div>
+          <p></p>
           <div className={styles.diets}>
             <label>Diets:</label>
             <div>
