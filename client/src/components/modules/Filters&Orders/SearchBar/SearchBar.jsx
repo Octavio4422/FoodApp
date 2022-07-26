@@ -12,7 +12,10 @@ export default function SearchBar({ resetPage }) {
   const handleSumbit = (e) => {
     e.preventDefault();
     resetPage();
-    if (input === "") return dispatch(emptyInput());
+    if (input === "") {
+    //  return dispatch(emptyInput())
+      return window.alert("Cannot search if the input is empty");
+    }
     dispatch(queryRecipes(input));
   };
 

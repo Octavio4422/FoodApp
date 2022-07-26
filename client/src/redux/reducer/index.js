@@ -25,6 +25,7 @@ const initialState = {
   error: {
     recipes: false,
     id: false,
+    query: false,
     diets: false,
     create: false,
   },
@@ -113,7 +114,10 @@ export default function rootReducer(state = initialState, { type, payload }) {
     case QUERY_ERROR:
       return {
         ...state,
-        recipes: [],
+        error: {
+          ...state.error,
+          query: payload,
+        },
       };
 
     case ID_ERROR:
@@ -125,14 +129,14 @@ export default function rootReducer(state = initialState, { type, payload }) {
         },
       };
 
-      case CREATE_ERROR:
+    case CREATE_ERROR:
       return {
-        ...state ,
-        error : {
+        ...state,
+        error: {
           ...state.error,
           create: payload,
-        }
-      }
+        },
+      };
 
     case CLEAR_ERROR:
       return {

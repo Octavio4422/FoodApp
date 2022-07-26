@@ -69,7 +69,7 @@ export const queryRecipes = (query) => (dispatch) => {
       console.log(error.message);
       dispatch({
         type: QUERY_ERROR,
-        payload: [],
+        payload: true,
       });
     });
 };
